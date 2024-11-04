@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --header-bg: #1e1e1e;
+            --container-bg: #1a1a1a;
+            --table-border: #333;
+            --table-header-bg: #2c2c2c;
+            --table-row-bg: #242424;
+            --table-row-alt-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text-color);
+            margin-bottom: 30px;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: var(--container-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+
+        /* Make the plots responsive */
+        .plotly-graph-div {
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        /* Improve table visibility */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            color: var(--text-color);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid var(--table-border);
+        }
+
+        th {
+            background-color: var(--table-header-bg);
+            color: var(--text-color);
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--table-row-bg);
+        }
+
+        tr:nth-child(odd) {
+            background-color: var(--table-row-alt-bg);
+        }
+
+        /* Responsive design */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .dashboard-container {
+                padding: 10px;
+            }
+        }
+
+        /* Override Plotly styles for dark mode */
+        .js-plotly-plot .plotly .main-svg {
+            background-color: var(--container-bg) !important;
+        }
+
+        .js-plotly-plot .plotly .gtitle {
+            fill: var(--text-color) !important;
+        }
+
+        .js-plotly-plot .plotly .xtick text,
+        .js-plotly-plot .plotly .ytick text {
+            fill: var(--text-color) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Dashboard Overview</h1>
+        <div class="plot-container">
+            {{ graph_html|safe }}
+        </div>
+    </div>
+</body>
+</html>
